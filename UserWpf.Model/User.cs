@@ -218,6 +218,19 @@ namespace UserWpf.Model
             }
         }
 
+        public void Save()
+        {
+            if(Id == 0)
+            {
+                Insert();
+            }
+
+            else
+            {
+                UpdatePerson();
+            }
+        }
+
 
 
 

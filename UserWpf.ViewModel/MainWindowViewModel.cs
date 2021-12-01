@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using System.Windows.Input;
 using UserWpf.Model;
 
 namespace UserWpf.ViewModel
@@ -72,14 +73,44 @@ namespace UserWpf.ViewModel
                     return;
                 }
                 filteringText = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("userListView"));
+                OnPropertyChanged(new PropertyChangedEventArgs("FilteringText"));
             }
 
         }
 
+        private ICommand deleteCommand;
+
+        public ICommand DeleteCommand
+        {
+            get { return deleteCommand; }
+            set
+            {
+                if (deleteCommand == value)
+                {
+                    return;
+                }
+                deleteCommand = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("DeleteCommand"));
+            }
+        }
+
+        void DeleteExecute(object obj)
+        {
+            CurrentUser.DeletePerson();
+            UserList.Remove(CurrentUser);
+        }
+
+        bool CanDelete(object obj)
+        {
+            if (CurrentUser == null) return false;
+
+            return true;
+        }
 
         public MainWindowViewModel()
         {
+            DeleteCommand = new RelayCommand(DeleteExecute, CanDelete);
+
             this.PropertyChanged += MainWindowViewModel_PropertyChanged;
 
             UserList = UserCollection.GetAllUsers();

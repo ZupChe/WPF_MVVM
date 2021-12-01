@@ -7,14 +7,14 @@
         mc:Ignorable="d"
         Title="{Binding WindowTitle}" Height="300" Width="300">
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Label x:Name="label1" Content="DisplayName"/>
+        <Label x:Name="label1" Content="DisplayName" FontWeight="DemiBold"/>
         <TextBox Text="{Binding CurrentUser.DisplayName}" x:Name="displayNameTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="0,0,0,10"/>
-        <Label x:Name="label2" Content="UserName"/>
+        <Label x:Name="label2" Content="UserName" FontWeight="DemiBold"/>
         <TextBox Text="{Binding CurrentUser.UserName}" x:Name="userNameTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="0,0,0,10"/>
-        <Label x:Name="label3" Content="UserPass"/>
+        <Label x:Name="label3" Content="UserPass" FontWeight="DemiBold"/>
         <TextBox Text="{Binding CurrentUser.UserPass}" x:Name="userPassTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="0,0,0,10"/>
-        <Label x:Name="label4" Content="IsAdmin"/>
+        <Label x:Name="label4" Content="IsAdmin" FontWeight="DemiBold"/>
         <TextBox Text="{Binding CurrentUser.IsAdmin}" x:Name="isAdminTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="0,0,0,10"/>
-        <Button x:Name="button" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75"></Button>
+        <Button Command="{Binding SaveCommand}" x:Name="button" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75"></Button>
     </StackPanel>
 </Window>

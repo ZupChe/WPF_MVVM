@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using UserWpf.Model;
 
 namespace UserWpf.ViewModel
@@ -45,14 +46,44 @@ namespace UserWpf.ViewModel
 
         public NewEditWindowViewModel(User user)
         {
+            SaveCommand = new RelayCommand(SaveExecute, CanSave);
             CurrentUser = user;
             WindowTitle = "Edit User";
         }
 
         public NewEditWindowViewModel()
         {
+            SaveCommand = new RelayCommand(SaveExecute, CanSave);
             CurrentUser = new User();
             WindowTitle = "New User";
+        }
+
+        private ICommand saveCommand;
+        public ICommand SaveCommand
+        {
+            get { return saveCommand; }
+            set
+            {
+                if (saveCommand == value)
+                {
+                    return;
+                }
+                saveCommand = value;
+                OnPropertyChanged(new PropertyChangedEventArgs("SaveCommand"));
+            }
+        }
+
+        void SaveExecute(object obj)
+        {
+            if (CurrentUser != null)
+            {
+                CurrentUser.Save();
+            }
+        }
+
+        bool CanSave(object obj)
+        {
+            return true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
