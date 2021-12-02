@@ -12,6 +12,15 @@ namespace UserWpf.ViewModel
 {
     public class MainWindowViewModel : INotifyPropertyChanged
     {
+        public void updateList()
+        {
+            UserList = UserCollection.GetAllUsers();
+
+            UserListView = new ListCollectionView(UserList);
+            UserListView.Filter = UserFilter;
+        }
+
+
         private User currentUser;
         private UserCollection userList;
         private ListCollectionView userListView;

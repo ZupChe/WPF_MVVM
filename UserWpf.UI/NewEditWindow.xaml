@@ -13,8 +13,7 @@
         <TextBox Text="{Binding CurrentUser.UserName}" x:Name="userNameTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="0,0,0,10"/>
         <Label x:Name="label3" Content="UserPass" FontWeight="DemiBold"/>
         <TextBox Text="{Binding CurrentUser.UserPass}" x:Name="userPassTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="0,0,0,10"/>
-        <Label x:Name="label4" Content="IsAdmin" FontWeight="DemiBold"/>
-        <TextBox Text="{Binding CurrentUser.IsAdmin}" x:Name="isAdminTxtBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="165" Margin="0,0,0,10"/>
+        <CheckBox Content="Is Admin" IsChecked="{Binding CurrentUser.IsAdmin}" Margin="0,10,0,10"/>
         <Button Command="{Binding SaveCommand}" x:Name="button" Content="Save" HorizontalAlignment="Right" VerticalAlignment="Top" Width="75"></Button>
     </StackPanel>
 </Window>

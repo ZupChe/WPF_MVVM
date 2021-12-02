@@ -78,6 +78,7 @@ namespace UserWpf.ViewModel
             if (CurrentUser != null)
             {
                 CurrentUser.Save();
+                Ok(this, new EventArgs());
             }
         }
 
@@ -92,5 +93,8 @@ namespace UserWpf.ViewModel
             if (PropertyChanged != null)
                 PropertyChanged(this, e);
         }
+
+        public event EventHandler<EventArgs> Ok;
+        
     }
 }

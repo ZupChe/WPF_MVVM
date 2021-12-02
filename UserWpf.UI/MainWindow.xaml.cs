@@ -31,25 +31,29 @@ namespace UserWpf.UI
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
         {
-            NewEditWindow newWindow = new NewEditWindow();
-            newWindow.DataContext = new NewEditWindowViewModel();
-            newWindow.ShowDialog();
+            NewEditWindow editWindow = new NewEditWindow();
+            var editmodel = new NewEditWindowViewModel();
+            editmodel.Ok += (s, args) => 
+            {
+                editWindow.Close();
+                ((MainWindowViewModel)DataContext).updateList();
+            };
+            editWindow.DataContext = editmodel;
+            editWindow.ShowDialog();
         }
 
         private void editBtn_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void deleteBtn_Click(object sender, RoutedEventArgs e)
-        {
             MainWindowViewModel viewModel = (MainWindowViewModel)DataContext;
             NewEditWindow editWindow = new NewEditWindow();
-            editWindow.DataContext = new NewEditWindowViewModel(viewModel.CurrentUser);
+            
+            var editmodel = new NewEditWindowViewModel(viewModel.CurrentUser);
+            editmodel.Ok += (s, args) => editWindow.Close();
+            editWindow.DataContext = editmodel;
             editWindow.ShowDialog();
         }
 
-
+        
         private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 

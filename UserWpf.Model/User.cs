@@ -135,7 +135,7 @@ namespace UserWpf.Model
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("UPDATE User WHERE id=@Id", conn);
+                SqlCommand command = new SqlCommand("DELETE [User] WHERE id=@Id", conn);
 
                 SqlParameter myParam = new SqlParameter("@Id", SqlDbType.Int, 11);
                 myParam.Value = this.Id;
@@ -154,7 +154,7 @@ namespace UserWpf.Model
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("UPDATE [User] SET UserName=@UserName, UserPass=@UserPass, DisplayName=@UserPass,; IsAdmin=@IsAdmin WHERE Id=@Id", conn);
+                SqlCommand command = new SqlCommand("UPDATE [User] SET UserName=@UserName, UserPass=@UserPass, DisplayName=@DisplayName, IsAdmin=@IsAdmin WHERE Id=@Id", conn);
 
                 SqlParameter userNameParam = new SqlParameter("@UserName", SqlDbType.NVarChar);
                 userNameParam.Value = this.UserName;
@@ -189,7 +189,7 @@ namespace UserWpf.Model
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("INSERT INTO [User](UserName, UserPass, DisplayName, IsAdmin) VALUES(@UserName, @UserPass, @UserPass, @IsAdmin); SELECT IDENT_CURRENT('User');", conn);
+                SqlCommand command = new SqlCommand("INSERT INTO [User](UserName, UserPass, DisplayName, IsAdmin) VALUES(@UserName, @UserPass, @DisplayName, @IsAdmin); SELECT IDENT_CURRENT('User');", conn);
 
                 SqlParameter userNameParam = new SqlParameter("@UserName", SqlDbType.NVarChar);
                 userNameParam.Value = this.UserName;

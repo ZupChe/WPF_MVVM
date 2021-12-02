@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using UserWpf.Model;
+using UserWpf.ViewModel;
 
 namespace UserWpf.UI
 {
@@ -23,20 +24,23 @@ namespace UserWpf.UI
         public LoginWindow()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (UserCollection.IsValidUser(UserName.Text.Trim(), UserPass.Password))
+            var model = new LoginWindowViewModel((sender, args) =>
+    args.Password = UserPass.Password);
+            model.Ok += (sender, args) =>
             {
                 MainWindow main = new MainWindow();
                 main.Show();
                 this.Close();
-            }
-            else
+            };
+
+            model.Error += (sender, args) =>
             {
                 MessageBox.Show("Login failed. Please try again");
-            }
+            };
+
+            this.DataContext = model;
         }
+
+       
     }
 }
