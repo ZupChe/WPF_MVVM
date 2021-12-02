@@ -7,7 +7,9 @@
         xmlns:local="clr-namespace:UserWpf.UI"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
-    
+    <Window.DataContext>
+        <view_model:MainWindowViewModel></view_model:MainWindowViewModel>
+    </Window.DataContext>
     <Grid Background="LightGray">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"/>
@@ -38,8 +40,6 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="{Binding Path=DisplayName}"></Label>
-                        <Label Content="{Binding Path=UserName}"></Label>
-                        <Label Content="{Binding Path=UserPass}"></Label>
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>

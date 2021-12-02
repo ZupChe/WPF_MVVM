@@ -21,7 +21,7 @@ namespace UserWpf.Model
                 conn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
                 conn.Open();
 
-                SqlCommand command = new SqlCommand("SELECT Id, UserName, UserPass, DisplayName, IsAdmin FROM User", conn);
+                SqlCommand command = new SqlCommand("SELECT Id, UserName, UserPass, DisplayName, IsAdmin FROM [User]", conn);
 
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -35,6 +35,26 @@ namespace UserWpf.Model
 
             }
             return users;
+        }
+
+        public static Boolean IsValidUser( string UserName, string UserPass)
+        {
+     
+           
+            using (SqlConnection conn = new SqlConnection())
+            {
+                conn.ConnectionString = ConfigurationManager.ConnectionStrings["ConnString"].ToString();
+                conn.Open();
+
+                SqlCommand command = new SqlCommand("SELECT Count(*) FROM [User] Where UserName = @u and UserPass = @p", conn);
+
+                command.Parameters.AddWithValue("u", UserName.ToLower());
+                command.Parameters.AddWithValue("p", UserPass);
+
+                int c = int.Parse(command.ExecuteScalar().ToString());
+                return c > 0;
+            }
+            
         }
     }
 }

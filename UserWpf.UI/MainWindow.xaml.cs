@@ -27,7 +27,6 @@ namespace UserWpf.UI
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new MainWindowViewModel();
         }
 
         private void newBtn_Click(object sender, RoutedEventArgs e)
